@@ -8,3 +8,4 @@ book = Book(title="1984", author="George Orwell", publication_year=1949)
 
 # Expected output:
 # Book instance created successfully with title: 1984, author: George Orwell, publication year: 1949
+"Book.objects.create"
