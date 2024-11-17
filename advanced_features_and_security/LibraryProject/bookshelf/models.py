@@ -54,4 +54,4 @@ class CustomUser(AbstractUser):
 
     def can_delete(self):
         return True 
-        
+    
