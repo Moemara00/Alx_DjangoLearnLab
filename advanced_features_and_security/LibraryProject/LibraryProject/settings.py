@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'relationship_app.apps.RelationshipAppConfig',
-    'bookshelf.apps.BookshelfConfig'
+    'bookshelf.apps.BookshelfConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,4 +124,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'bookshelf.New_User'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
