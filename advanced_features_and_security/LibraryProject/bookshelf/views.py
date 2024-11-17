@@ -9,4 +9,5 @@ from django.http import HttpResponse
 @permission_required('bookshelf.CustomUser', raise_exception = True)
 def say_message(request):
 
+    book_list = ['']
     HttpResponse("Hello")
