@@ -37,7 +37,7 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateField(default= timezone.now)
     profile_photo = models.DateField(default = '')
 
-    objects = New_UserManager()
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
