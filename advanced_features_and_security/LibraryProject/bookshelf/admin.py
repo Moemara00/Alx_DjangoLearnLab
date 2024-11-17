@@ -10,4 +10,4 @@ class CustomUserAdmin(UserAdmin):
                 ('permissions', {'fields': ('is_staff', 'is_superuser')}),
                 ('Personal', {'fields': ('date_of_birth', 'profile_photo')})
 
-admin.site.register(CustomUser)
+admin.site.register(CustomUser,CustomUserAdmin)
