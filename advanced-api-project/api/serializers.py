@@ -23,7 +23,7 @@ class BookSerializer(serializers.ModelSerializer):
     publication_year = serializers.IntegerField(validators= [validate_publication_year])
 
 class AuthorSerializer(serializers.ModelSerializer):
-    author_books = serializers.SerializerMethodField(read_only= True)
+    author_books = serializers.SerializerMethodField(read_only= True,many=True)
     class Meta:
         model = Author
         fields = [
