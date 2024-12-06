@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework import filters 
 from .models import Author
 
-
+from django_filters import rest_framework
 class ListView(generics.ListAPIView):
     
     queryset = Book.objects.all()
