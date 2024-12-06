@@ -4,15 +4,16 @@ from .models import Book
 from .serializers import BookSerializer
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from rest_framework.filters import SearchFilter, OrderingFilter
+from rest_framework import filters 
 from .models import Author
+
 
 class ListView(generics.ListAPIView):
     
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
-    filter_backends = [SearchFilter,OrderingFilter]
+    filter_backends = [filters.SearchFilter,filters.OrderingFilter]
     search_fields = ('title','author__name')
 
     def get_queryset(self):
