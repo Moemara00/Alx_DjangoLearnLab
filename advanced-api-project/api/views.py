@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework import filters 
 from .models import Author
 
-from django_filters import rest_framework
+# from django_filters import rest_framework
 class ListView(generics.ListAPIView):
     
     queryset = Book.objects.all()
@@ -28,29 +28,29 @@ class ListView(generics.ListAPIView):
 class DetailView(generics.RetrieveAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticated]
 
 class CreateView(generics.CreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
 
-    def perform_create(self, serializer):
-        current_year = datetime.now().year
-        if serializer.publication_year > current_year:
-            raise serializers.ValidationError("Sorry This year is in the future")
+    # def perform_create(self, serializer):
+    #     current_year = datetime.now().year
+    #     if serializer.publication_year > current_year:
+    #         raise serializers.ValidationError("Sorry This year is in the future")
 
-        return super().perform_create(serializer)
+    #     return super().perform_create(serializer)
 
 class UpdateView(generics.UpdateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
-    def perform_update(self, serializer):
-        current_year = datetime.now().year
-        if serializer.publication_year > current_year:
-            raise serializers.ValidationError("Sorry This year is in the future")
-        return super().perform_update(serializer)
+    # def perform_update(self, serializer):
+    #     current_year = datetime.now().year
+    #     if serializer.publication_year > current_year:
+    #         raise serializers.ValidationError("Sorry This year is in the future")
+    #     return super().perform_update(serializer)
 
 class DeleteView(generics.DestroyAPIView):
     queryset = Book.objects.all()
