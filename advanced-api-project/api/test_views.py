@@ -27,4 +27,4 @@ class TestDetail(APITestCase):
         # self.client.login(username='mohamed', password='123')
         response = self.client.post(self.url,self.data,format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    
+        self.assertEqual(response.data['title'], 'GO ALONE')
