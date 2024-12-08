@@ -1,4 +1,7 @@
 {% load static %}
+{% static 'styles.css' %}
+{% static 'base.html' %}
+{% static 'scripts.js' %}
 <form method="post">
     {%csrf_token%}
     {{form.as_p}}
