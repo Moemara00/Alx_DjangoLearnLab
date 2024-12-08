@@ -11,7 +11,10 @@ class ProfileView(LoginRequiredMixin,TemplateView):
         template_name= 'profile.html'
 
 class ChangeView(View):
+    
     def get(self,request):
+        if request.method == 'GET':
+            pass
         form = CustomUserChangeForm(instance=request.user)
         return render(request,'change.html',{'form':form})
 
@@ -22,7 +25,7 @@ class ChangeView(View):
             return redirect('home')
         
         return render(request,'change.html',{'form':form})
-    
+
 class ChangePassword(View):
     def get(self,request):
         form = PasswordChangeForm(user=request.user)
