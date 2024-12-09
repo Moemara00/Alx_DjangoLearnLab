@@ -52,7 +52,10 @@ class UpdateView(generic.UpdateView):
 
 
 class DeleteView(generic.DeleteView):
-    queryset = Post.objects.all()
+
+    model = Post
+    template_name = 'post_confirm_delete.html'
+
 
 class ProfileView(LoginRequiredMixin,TemplateView):
 
