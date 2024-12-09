@@ -1,0 +1,20 @@
+
+<!-- templates/blog_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ blog_post.title }}</title>
+</head>
+<body>
+    
+    {% for q in qs%}
+    <h1> {{q.title}}</h1>
+    <p> By {{q.author}} on {{q.published_date}} </p>
+    <p> content: {{q.content}}</p>
+    
+    {% endfor %}
+
+</body>
+</html>

@@ -1,10 +1,58 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .forms import CustomUserCreationForm ,CustomUserChangeForm,PasswordChangeForm
+from .forms import CustomUserCreationForm ,CustomUserChangeForm,PasswordChangeForm, PostForm
 from django.contrib.auth import login,logout
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from django.views import generic
+from .models import Post
+from django.shortcuts import get_object_or_404
+
+class ListView(generic.ListView):
+    pass
+
+class DetailView(generic.DetailView):
+   
+    def get(self,request,pk):
+        user = self.request.user
+       
+        qs = Post.objects.filter(author=user)
+        return render(request,'detail.html',{'qs':qs})
+
+class CreateView(generic.CreateView):
+
+    def get(self,request):
+        form = PostForm()
+        return render(request,'create.html',{'form':form})
+    def post(self,request):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('detail')
+        return render(request,'create.html',{'form':form})
+
+
+class UpdateView(generic.UpdateView):
+   
+    def get(self, request, pk):
+   
+        blog_post = get_object_or_404(Post, pk=pk)  
+        form = PostForm(instance=blog_post)  
+        return render(request, 'update.html', {'form': form})
+    
+    def post(self, request, pk):
+      
+        blog_post = get_object_or_404(Post, pk=pk)  
+        form = PostForm(request.POST, instance=blog_post)  
+        if form.is_valid():
+            form.save()
+            return redirect('home') 
+        return render(request, 'update.html', {'form': form})
+
+
+class DeleteView(generic.DeleteView):
+    queryset = Post.objects.all()
 
 class ProfileView(LoginRequiredMixin,TemplateView):
 
