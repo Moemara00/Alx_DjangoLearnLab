@@ -32,7 +32,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(required=True, write_only=True)
-    token = serializers.CharField(read_only=True)
+    token = serializers.CharField()
 
     def validate(self, data):
         username = data.get('username')
