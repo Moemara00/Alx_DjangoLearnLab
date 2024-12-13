@@ -42,7 +42,7 @@ class LoginSerializer(serializers.Serializer):
         if user is None:
             raise serializers.ValidationError("Invalid Credentials!")
         
-        token, created = Token.objects.get_or_create(user=user)
+        token = Token.objects.create(user=user)
 
         # Return validated data with token
         return {
