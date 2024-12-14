@@ -7,6 +7,9 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model, login
 from rest_framework.exceptions import NotFound
 from rest_framework import status
+from rest_framework import permissions
+from .models import CustomUser
+CustomUser.objects.all()
 User = get_user_model()
 
 class RegisterView(generics.CreateAPIView):
@@ -44,7 +47,7 @@ class UserView(generics.ListAPIView):
 
 
 class FollowView(APIView):
-
+    permission_classes = [permissions.IsAuthenticated]
     def get(self, request, username):
         """
         Handle user follow action.
@@ -77,8 +80,8 @@ class FollowView(APIView):
 
 
 
-class UnFollowView(APIView):
-     
+class UnFollowView(generics.GenericAPIView):
+     permission_classes = [permissions.IsAuthenticated]
      def get(self,request,username):
           
         try:
