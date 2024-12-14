@@ -4,7 +4,7 @@ User = get_user_model()
 class Post(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    content= models.TextField(max_length=1000)
+    content= models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
