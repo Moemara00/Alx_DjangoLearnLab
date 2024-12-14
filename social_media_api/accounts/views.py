@@ -10,12 +10,25 @@ User = get_user_model()
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
+    def post(self, request, *args, **kwargs):
+
+        serializer = RegisterSerializer(data = request.data)
+        if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        return Response(serializer.errors)
+      
+
 
 class LoginView(generics.CreateAPIView):
-
-    queryset = User.objects.all()
     serializer_class = LoginSerializer
 
+    def post(self, request, *args, **kwargs):
+
+            serializer = LoginSerializer(data = request.data)
+            if serializer.is_valid():
+                 return Response(serializer.validated_data)
+            return Response(serializer.errors)
     
 class UserView(generics.ListAPIView):
     queryset = User.objects.all()

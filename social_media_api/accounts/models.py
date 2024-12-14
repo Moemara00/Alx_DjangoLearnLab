@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import Permission, Group
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+
+# class Token(models.Model):
+
+#     key = models.CharField(max_length=40, primary_key=True)
+#     user = models.OneToOneField(
+#         User, related_name='auth_token', on_delete=models.CASCADE
+#     )
+#     created = models.DateTimeField(auto_now_add=True)
 
 class CustomUser(AbstractUser):
 
