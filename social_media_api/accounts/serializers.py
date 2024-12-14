@@ -6,11 +6,15 @@ from rest_framework.response import Response
 User = get_user_model()
 
 serializers.CharField(), Token.objects.create
-class UserSerilalizer(serializers.ModelSerializer):
 
+
+class UserSerilalizer(serializers.ModelSerializer):
+    following = serializers.StringRelatedField(many=True,read_only = True)
+    
     class Meta:
         model = User
-        fields = ['username','bio']
+        fields = ['username','bio','following']
+
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -37,23 +41,34 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(required=True, write_only=True)
     token = serializers.CharField(read_only=True)
     
+
+
+
+
     def validate(self, data):
         username = data.get('username')
         password = data.get('password')
         
         # Authenticate user
         user = authenticate(username=username, password=password)
+        
+
         if user is None:
             raise serializers.ValidationError("Invalid credentials!")
-        
-        if not user.id:
-            user.save()
+      
         # Get or create token for the user
         token, _ = Token.objects.get_or_create(user=user)
         
         # Return relevant data
-        return {
-            'username': user.username,
-            'email': user.email,
-            'token': token.key
-        }
+    
+        if user.is_authenticated:
+            print(user.pk)
+
+            return {
+                'username': user.username,
+                'email': user.email,
+                'token': token.key
+            }
+     
+
+

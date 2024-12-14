@@ -6,5 +6,5 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
 
         model = CustomUser
-        fieldsets = UserAdmin.fieldsets + ((None ,{'fields':('bio','profile_image','followers')}),
+        fieldsets = UserAdmin.fieldsets + ((None ,{'fields':('bio','profile_image','following')}),
                     )

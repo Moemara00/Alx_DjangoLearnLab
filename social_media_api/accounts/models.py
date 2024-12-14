@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
 
     bio = models.TextField(blank=True,null=True)
     profile_image = models.ImageField(upload_to='profile_pictures/',blank=True,null=True)
-    followers = models.ManyToManyField('self',symmetrical=False,related_name='following',blank=True)
+    following = models.ManyToManyField('self',symmetrical=False,related_name='followers',blank=True)
 
 
     groups = models.ManyToManyField(
