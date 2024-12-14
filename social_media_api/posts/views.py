@@ -41,8 +41,8 @@ class UsersPosts(APIView):
 
     def get(self,request):
 
-        followers = request.user.following.all()
-        posts = Post.objects.filter(author__in= followers).order_by('created_at')
+        following_users = request.user.following.all()
+        posts = Post.objects.filter(author__in= following_users).order_by('created_at')
 
         serializer = PostSerializer(posts,many=True)
         return Response(serializer.data)
