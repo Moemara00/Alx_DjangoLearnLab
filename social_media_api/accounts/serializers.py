@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login
 from rest_framework.response import Response
 User = get_user_model()
 
-
+serializers.CharField(), Token.objects.create
 class UserSerilalizer(serializers.ModelSerializer):
 
     class Meta:
