@@ -48,12 +48,12 @@ class UserView(generics.ListAPIView):
 
 class FollowView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    def get(self, request, username):
+    def get(self, request, id):
         """
         Handle user follow action.
         """
         try:
-            user_to_follow = User.objects.get(username=username)
+            user_to_follow = User.objects.get(id=id)
         except User.DoesNotExist: 
             raise NotFound(detail="User not found", code=status.HTTP_404_NOT_FOUND)
 
