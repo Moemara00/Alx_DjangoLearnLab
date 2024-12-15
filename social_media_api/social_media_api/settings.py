@@ -149,3 +149,8 @@ REST_FRAMEWORK = {
     changes made in the settings (debug)
 
 '''
+
+if not DEBUG:  
+    SECURE_BROWSER_XSS_FILTER = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_SSL_REDIRECT = True
