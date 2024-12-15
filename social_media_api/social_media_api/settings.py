@@ -146,7 +146,7 @@ REST_FRAMEWORK = {
 
 PORT = 8000
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 '''
     changes made in the settings (debug)
 
