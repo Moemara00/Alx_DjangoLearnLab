@@ -144,6 +144,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 
+PORT = 8000
+
 
 '''
     changes made in the settings (debug)
