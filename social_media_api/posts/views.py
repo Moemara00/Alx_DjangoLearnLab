@@ -73,7 +73,7 @@ class LikingView(generics.GenericAPIView):
 
             )
 
-        
+        generics.get_object_or_404(Post, pk=pk) Like.objects.get_or_create(user=request.user, post=post)
 
         return Response({'detail':'You now liked it'},status=status.HTTP_201_CREATED)
     
