@@ -82,10 +82,10 @@ class FollowView(APIView):
 
 class UnFollowView(generics.GenericAPIView):
      permission_classes = [permissions.IsAuthenticated]
-     def get(self,request,username):
+     def get(self,request,id):
           
         try:
-               user_to_unfollow = User.objects.get(username=username)
+               user_to_unfollow = User.objects.get(id=id)
             
         except User.DoesNotExist:
              

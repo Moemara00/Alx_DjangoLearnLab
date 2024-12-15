@@ -7,8 +7,8 @@ urlpatterns = [
     path('login/',views.LoginView.as_view(),name="Login"),
     path('profile/',views.UserView.as_view(),name='profile'),
     path('log/',obtain_auth_token),
-    path("follow/<int:user_id>/",views.FollowView.as_view(),name='follow'),
-    path("unfollow/<int:user_id>/",views.UnFollowView.as_view(),name='unfollow')
+    path("follow/<int:id>/",views.FollowView.as_view(),name='follow'),
+    path("unfollow/<int:id>/",views.UnFollowView.as_view(),name='unfollow')
 
               
  ]

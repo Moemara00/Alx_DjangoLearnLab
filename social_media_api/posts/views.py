@@ -54,9 +54,9 @@ class UsersPosts(APIView):
 class LikingView(generics.GenericAPIView):
 
     permission_classes = [permissions.IsAuthenticated]
-    def get(self,request,post_id):
+    def get(self,request,pk):
 
-        post_to_like = get_object_or_404(Post,id=post_id)
+        post_to_like = get_object_or_404(Post,pk=pk)
 
         if Like.objects.filter(user=request.user,post=post_to_like).exists():
             return Response({"detail": 'You are already Liked it'},status=status.HTTP_400_BAD_REQUEST)
@@ -73,18 +73,29 @@ class LikingView(generics.GenericAPIView):
 
             )
 
-        generics.get_object_or_404(Post, pk=pk) Like.objects.get_or_create(user=request.user, post=post)
+        # generics.get_object_or_404(Post, pk=pk) Like.objects.get_or_create(user=request.user, post=post)
 
         return Response({'detail':'You now liked it'},status=status.HTTP_201_CREATED)
     
         
-    
-
-
-
-
 
 
 class UnLikingView(APIView):
-    pass
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self,request,pk):
+
+        post_to_unfollow = get_object_or_404(Post,pk=pk)
+
+        liked_post = Like.objects.filter(post=post_to_unfollow,user=request.user).first()
+
+        if not liked_post:
+            return Response({"detail":'You did not like this post'})
+
+
+        liked_post.delete()
+        return Response({'detail':'You dislike the post successfully'},status=status.HTTP_201_CREATED)
+    
+
 
